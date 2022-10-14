@@ -38,13 +38,14 @@ inserir x Vazia = No x Vazia Vazia
 inserir x (No y left right) 
     | x == y = No y left right
     | x < y = No y (inserir x left) right
-    | x > y = No y left (inserir x right)
+    | otherwise = No y left (inserir x right)
 
 construirLinear :: Ord a => [a] -> Arv a
 construirLinear = foldr inserir Vazia
 
 altura :: Arv a -> Int
 altura Vazia = 0
+altura (No _ Vazia Vazia) = 0
 altura (No _ left right) = 1 + max(altura left) (altura right)
 
 testHeight :: ([Int] -> Arv Int) -> [Int] -> [Int]
@@ -62,7 +63,7 @@ remover _ Vazia = Vazia
 remover x (No y left right) 
     | x < y = No y (remover x left) right
     | x > y = No y left (remover x right)
-    | x == y = removerNo (No y left right)
+    | otherwise = removerNo (No y left right)
 
 removerNo :: Ord a=> Arv a  -> Arv a
 removerNo Vazia = error "Nao tem nos para remover"
