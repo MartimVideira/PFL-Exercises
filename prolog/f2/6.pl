@@ -8,7 +8,7 @@ invertRec([],Reversed,Reversed).
 % del_one(+Elem, +List1, ?List2)
 % Apaga uma ocorrência de Elem de List1, resultando em List2.
 del_one(_,[],[]).
-del_one(Elem,[Elem|XS],XS).
+del_one(Elem,[Elem|XS],XS):-!.
 del_one(Elem,[X|XS],[X|YS]):- Elem \=X ,del_one(Elem,XS,YS).
 
 % del_all(+Elem, +List1, ?List2)
@@ -28,11 +28,12 @@ del_dups([X|XS],[X|YS]):- del_all(X,XS,Z),del_dups(Z,YS).
 
 % length(+List1,?len) determina o tamanho da lista
 my_length([],0).
-my_length([_|XS],Len):- length(XS,Len1), Len is Len1 + 1.
+my_length([_|XS],Len):- my_length(XS,Len1), Len is Len1 + 1.
 
 % list_perm (+L1, +L2) que sucede se L2 for uma permutação de L1.
 list_perm([],[]).
-list_perm([X|XS],L2):- my_length(XS,LenXS),
+list_perm([X|XS],L2):- 
+    my_length(XS,LenXS),
     my_length(L2,LenL2),
     LenL2 is LenXS +1,
     del_one(X,L2,Z),list_perm(XS,Z).
@@ -63,4 +64,5 @@ insert_or_delete_elem(N,[X|XS],Elem,[X|YS],Mode):- N1 is N - 1,insert_or_delete_
 % localizado no índice Index de List1, por New, resultando em List2.
 replace([Old|XS],0,Old,New,[New|XS]).
 replace([X|XS],N,Old,New,[X|YS]):- N1 is N - 1, replace(XS,N1,Old,New,YS).
+
 

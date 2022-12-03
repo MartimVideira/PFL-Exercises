@@ -10,3 +10,4 @@ rle([X|XS],[X-N|Rest]):- N1 #= N - 1,rle(XS,[X-N1|Rest]).
 un_rle([_X-0],[]):-!.
 un_rle([X-0,Y-N|Rest],[Y|XS]):- X\= Y,un_rle([Y-N|Rest],[Y|XS]).
 un_rle([X-N|Rest],[X|XS]):- N1 #= N -1,un_rle([X-N1|Rest],XS).
+

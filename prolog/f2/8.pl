@@ -28,7 +28,7 @@ isPrime(N,C):- (N mod C) #\= 0,C1 is C +1 ,isPrime(N,C1).
 isPrime(N):- N > 1,isPrime(N,2).
 
 filterPrimes([],[]):-!.
-filterPrimes([X|XS],[X|YS]):- isPrime(X),filterPrimes(XS,YS).
+filterPrimes([X|XS],[X|YS]):- isPrime(X),!,filterPrimes(XS,YS).
 filterPrimes([_|XS],YS):- filterPrimes(XS,YS).
 
 primes(N,List):- list_to(N,Range),filterPrimes(Range,List).
