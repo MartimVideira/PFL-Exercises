@@ -10,6 +10,7 @@ invertRec([],Reversed,Reversed).
 del_one(_,[],[]).
 del_one(Elem,[Elem|XS],XS):-!.
 del_one(Elem,[X|XS],[X|YS]):- Elem \=X ,del_one(Elem,XS,YS).
+%del_one(5,[1 |[2,3,5,6,7],[1|2,3,6,7])
 
 % del_all(+Elem, +List1, ?List2)
 % Apaga todas ocorrências de Elem de List1, resultando em List2.

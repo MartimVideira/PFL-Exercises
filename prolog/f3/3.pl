@@ -34,7 +34,7 @@ adult(X):- spider(X), !, age(X, N), N>=1.
 adult(X):- bat(X), !, age(X, N), N >=5.
 
 %  Neste conjunto de regras penso que o cut é verde SE E SÓ se garantirmos que
-%  não temos seres que são pertencem a mais do que um grupo
+%  não temos seres que pertençam a mais do que um grupo
 %  (person,turtle,bat,spider...) por exemplo as tartarugas ninjas ou o spiderman
 person("Peter Parker").
 spider("Peter Parker").
