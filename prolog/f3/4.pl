@@ -79,7 +79,6 @@ max_len_rec([],X,X).
 max_len_rec([S|SS],N,X):- length(S,N1),N1 > N,!, max_len_rec(SS,N1,X).
 max_len_rec([_|SS],N,X):- max_len_rec(SS,N,X).
 max_len(SS,N):- max_len_rec(SS,0,N).
-
 % Como vamos meter o padding dos dois lados se a diferenca de comprimento entre o texto maior e um qualuqer texto não for par
 % vamos ter um problema de alinhamento podemos fazer um pequeno hack de acrescentar um espaco para corrigir
 adjusted_text(Text,MaxLen,Text):- 
