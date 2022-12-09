@@ -84,7 +84,7 @@ teachers_of(S,T):- setof(Professor,professor(Professor,S),T).
 % e) common_courses(+S1,+S2,-C) devolve uma lista de todas as unidades
 % curriculares frequentadas por ambos os estudantes S1 e S2.
 common_courses(S1,S2,C):-
-    setof(Cadeira,(frequenta(Cadeira,S1),frequenta(Cadeira,S2)),C).
+    setof(Cadeira,(S1,S2)^(frequenta(Cadeira,S1),frequenta(Cadeira,S2)),C).
 
 % f) more_than_one_course(-L) devolve uma lista com todos os estudantes que
 % frequentam mais de 1 UC
@@ -93,15 +93,16 @@ more_than_one_course(L):-
 
 % g) strangers(-L) devolve uma lista de todos os pares de estudantes que não se
 % conhecem, não frequentam nenhuma cadeira em comum.
-% Porque é que isto não dá 
-common_courses_all(S1,S2,C):-
-    findall(Cadeira,(frequenta(Cadeira,S1),frequenta(Cadeira,S2)),C).
-strangers(L):- setof(S1-S2,(common_courses(S1,S2,C), C =[]),L).
+% Para remover casos como "Alberto"-"Joao" "Joao"-"Alberto" que o setof não remove
+remove_switched(XS,YS):- remove_switched(XS,YS,[]).
+remove_switched([],[],_).
+remove_switched([X-X1|XS],[X-X1|YS],Acc):- \+ member(X1-X,Acc),!,remove_switched(XS,YS,[X-X1|Acc]).
+remove_switched([_Elem|XS],YS,Acc):- remove_switched(XS,YS,Acc).
+
+strangers(Res):- setof(S1-S2,(A,B,C)^(frequenta(A,S1),frequenta(B,S2),S1\=S2,\+ common_courses(S1,S2,C)),L),
+        remove_switched(L,Res).
 
 % h) good_groups(L) devolve uma lista com todos os pares de estudantes qeu frequentam mais de uma UC em comum
-good_groups(L):-
-    setof(S1-S2,(C,N)^(S1\=S2,common_courses(S1,S2,C),length(C,N),N >1),L).
-
-good_groups2(L) :- setof(S1-S2,
-    (UC1,UC2)^(frequenta(UC1, S1), frequenta(UC2, S1), frequenta(UC1, S2), frequenta(UC2, S2),
-    UC1 \= UC2, S1 \= S2), L).
+good_groups(Res):-
+    setof(S1-S2,(A,B,C,N)^(frequenta(A,S1),frequenta(B,S2),S1\=S2,common_courses(S1,S2,C),length(C,N),N >1),L),
+    remove_switched(L,Res).
