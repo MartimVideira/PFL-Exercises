@@ -52,6 +52,7 @@ print_classes([]).
 print_classes([X|XS]):- print_class(X),print_classes(XS).
 
 % Para usar como parametro do quickSort para ordenar aulas por dias
+atom_number(Atom,Number):- atom_chars(Atom, Y), number_chars(Number, Y).
 keyByDay(_-_/X:_-_,_-_/Y:_-_):- 
     sub_atom(X,Space1,_,_,' '),
     sub_atom(X,0,Space1,_,Day1Atom),
