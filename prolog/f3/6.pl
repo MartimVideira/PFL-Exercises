@@ -1,55 +1,55 @@
 % professor leciona cadeira
 % leciona(cadeira,professor)
-leciona("Algoritmos","Adalberto").
-leciona("Base De Dados","Bernardete").
-leciona("Estatística","Diógenes").
-leciona("Redes","Ermelinda").
+leciona('Algoritmos','Adalberto').
+leciona('Base De Dados','Bernardete').
+leciona('Estatística','Diógenes').
+leciona('Redes','Ermelinda').
 
 % Aluno frequenta cadeira
 % frequenta(cadeira,aluno)
 
-% "Algoritmos"
-frequenta("Algoritmos","Alberto").
-frequenta("Algoritmos","Bruna").
-frequenta("Algoritmos","Cristina").
-frequenta("Algoritmos","Diogo").
-frequenta("Algoritmos","Eduarda").
+% 'Algoritmos'
+frequenta('Algoritmos','Alberto').
+frequenta('Algoritmos','Bruna').
+frequenta('Algoritmos','Cristina').
+frequenta('Algoritmos','Diogo').
+frequenta('Algoritmos','Eduarda').
 
-% "Base de Dados"
-frequenta("Base De Dados","António").
-frequenta("Base De Dados","Bruno").
-frequenta("Base De Dados","Cristina").
-frequenta("Base De Dados","Duarte").
-frequenta("Base De Dados","Eduardo").
+% 'Base de Dados'
+frequenta('Base De Dados','António').
+frequenta('Base De Dados','Bruno').
+frequenta('Base De Dados','Cristina').
+frequenta('Base De Dados','Duarte').
+frequenta('Base De Dados','Eduardo').
 
-% "Compiladores"
-frequenta("Compiladores","Alberto").
-frequenta("Compiladores","Bernardo").
-frequenta("Compiladores","Clara").
-frequenta("Compiladores","Diana").
-frequenta("Compiladores","Eurico").
+% 'Compiladores'
+frequenta('Compiladores','Alberto').
+frequenta('Compiladores','Bernardo').
+frequenta('Compiladores','Clara').
+frequenta('Compiladores','Diana').
+frequenta('Compiladores','Eurico').
 
-% "Estatística"
-frequenta("Estatística","António").
-frequenta("Estatística","Bruna").
-frequenta("Estatística","Cláudio").
-frequenta("Estatística","Duarte").
-frequenta("Estatística","Eva").
+% 'Estatística'
+frequenta('Estatística','António').
+frequenta('Estatística','Bruna').
+frequenta('Estatística','Cláudio').
+frequenta('Estatística','Duarte').
+frequenta('Estatística','Eva').
 
-% "Redes"
-frequenta("Redes","Álvaro").
-frequenta("Redes","Beatriz").
-frequenta("Redes","Cláudio").
-frequenta("Redes","Diana").
-frequenta("Redes","Eduardo").
+% 'Redes'
+frequenta('Redes','Alvaro').
+frequenta('Redes','Beatriz').
+frequenta('Redes','Cláudio').
+frequenta('Redes','Diana').
+frequenta('Redes','Eduardo').
 
 % b)
-% i) leciona(X,"Diógenes").
-% ii)leciona(X,"Felismina").
-% iii)frequenta(X,"Cláudio").
-% iv)frequenta(X,"Dalmindo").
-% v)leciona(Z,"Bernardete"),frequenta(Z,"Eduarda").
-% vi)frequenta(X,"Alberto"),frequenta(X,"Álvaro").
+% i) leciona(X,'Diógenes').
+% ii)leciona(X,'Felismina').
+% iii)frequenta(X,'Cláudio').
+% iv)frequenta(X,'Dalmindo').
+% v)leciona(Z,'Bernardete'),frequenta(Z,'Eduarda').
+% vi)frequenta(X,'Alberto'),frequenta(X,'Álvaro').
 
 % c)
 % i) X é aluno do professor Y
@@ -93,7 +93,7 @@ more_than_one_course(L):-
 
 % g) strangers(-L) devolve uma lista de todos os pares de estudantes que não se
 % conhecem, não frequentam nenhuma cadeira em comum.
-% Para remover casos como "Alberto"-"Joao" "Joao"-"Alberto" que o setof não remove
+% Para remover casos como 'Alberto'-'Joao' 'Joao'-'Alberto' que o setof não remove
 remove_switched(XS,YS):- remove_switched(XS,YS,[]).
 remove_switched([],[],_).
 remove_switched([X-X1|XS],[X-X1|YS],Acc):- \+ member(X1-X,Acc),!,remove_switched(XS,YS,[X-X1|Acc]).
