@@ -33,11 +33,12 @@ my_length([_|XS],Len):- my_length(XS,Len1), Len is Len1 + 1.
 
 % list_perm (+L1, +L2) que sucede se L2 for uma permutação de L1.
 list_perm([],[]).
-list_perm([X|XS],L2):- 
-    my_length(XS,LenXS),
-    my_length(L2,LenL2),
-    LenL2 is LenXS +1,
-    del_one(X,L2,Z),list_perm(XS,Z).
+list_perm([H|T],Perm):-
+    list_perm(T,PermT),
+    insert(H,PermT,Perm).
+
+insert(X,XS,[X|XS]).
+insert(X,[Y|XS],[Y|YS]):- insert(X,XS,YS).
 
 % g) replicate(+Amount, +Elem, ?List) que gera uma lista com Amount repetições de Elem.
 replicate(0,_,[]):-!.
