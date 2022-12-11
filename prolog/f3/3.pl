@@ -33,17 +33,28 @@ adult(X):- turtle(X), !, age(X, N), N >=50.
 adult(X):- spider(X), !, age(X, N), N>=1.
 adult(X):- bat(X), !, age(X, N), N >=5.
 
-%  Neste conjunto de regras penso que o cut é verde SE E SÓ se garantirmos que
-%  não temos seres que pertençam a mais do que um grupo
-%  (person,turtle,bat,spider...) por exemplo as tartarugas ninjas ou o spiderman
-person("Peter Parker").
-spider("Peter Parker").
-age("Peter Parker",17).
+% Considerando a query:
+% ?- adult(X).
+%
+%
+%
+% Imaginemos que temos a seguinte base de conhecimento:
+% person(lara).
+% age(lara,17).
+% turtle(oldboy).
+% age(oldboy,51).
 
-person("Michelangelo").
-turtle("Michelangelo").
-age("Michelangelo",21).
+% Estariamos á espera que ?- adult(X). resultasse em X = oldboy
+% Mas se corressmos este exemplo obtemos false/no
+%                   ?- adult(X)
+%                      /
+%                  person(X) -> Instancia pela ordem dos factos, X = Lara
+%                     /
+%                    ! -> Stop backtracking na instanciacao de X
+%                    /
+%                   age(lara,N) -> N = 17
+%                   /
+%                  17 >= 18 False  
+%  tentamos dar backtracking na escolha de X mas não conseguimos  devido aquele cut logo temos que
+%  adult(X) é false, coisa que não aconteceria se não tivesse lá o cut então é vermelho.
 
-% Sem o cut :
-%  ?- adult("Peter Parker"). daria false e depois true.
-%  ?- adult("Michelangelo"). daria true e depois false
