@@ -42,11 +42,11 @@ classes(L):- findall(UC-Tipo/Dia:Hora-Duracao,class(UC,Tipo,Dia,Hora,Duracao),L)
 % Imprime uma aula no formato de cima
 print_class(UC-Tipo/Dia:Hora-Duracao):-
     traducao(Dia,DiaTraduzido),
-    write("Dia:"),write(DiaTraduzido),
+    write('Dia:'),write(DiaTraduzido),
     Final is Hora + Duracao,
-    write(" "),write(Hora),write("-"),write(Final),nl,
-    write("Aula "),write(Tipo),
-    write(" de "),write(UC),nl.
+    write(' '),write(Hora),write('-'),write(Final),nl,
+    write('Aula '),write(Tipo),
+    write(' de '),write(UC),nl.
 
 print_classes([]).
 print_classes([X|XS]):- print_class(X),print_classes(XS).
@@ -106,9 +106,9 @@ traducao('5 Sex',sex).
 % h) Pergunta ao user por um dia e uma hora e retorna as aulas que estao a
 % decorrer ou a comecar nessa hora.
 find_class:-
-    write("Desborir que aula esta a decorrer!\nDigite um dia(seg,ter,qua,qui,sex): "),
+    write('Desborir que aula esta a decorrer!\nDigite um dia(seg,ter,qua,qui,sex): '),
     read(DayExterno),
-    write("Digite um hora: "),
+    write('Digite um hora: '),
     read(Hora),
     traducao(DayInterno,DayExterno),
     findall(UC/HoraInicio-Duracao,
