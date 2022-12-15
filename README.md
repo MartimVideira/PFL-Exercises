@@ -14,3 +14,7 @@ Here you can find the solutions to the exercise sheets found in the practical le
 - [Ficha 1](./prolog/f1)
 - [Ficha 2](./prolog/f2)
 - [Ficha 3](./prolog/f3)
+
+
+
+Notes on [Sicstus vs Swipl](./prolog/sicstus-vs-swipl.md)
